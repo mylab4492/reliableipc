@@ -167,16 +167,16 @@ ini_set('display_errors', 1);
 $mail->SMTPAuth = 'tls';
 $mail->Host = "rome.viewen.com";
 $mail->Port = 465;
-$mail->Username = "info@reliableipc.com";
-$mail->Password = "Aziz@relibleipc";
+$mail->Username = "reliable.ipc@gmai.com";
+$mail->Password = "Reliale123";
 $mailSent = 1;
 $messageSent = 1;
-$mail->SetFrom('info@reliableipc.com', 'Relialeipc.com');
+$mail->SetFrom('reliable.ipc@gmail.com', 'Relialeipc.com');
 $mail->Subject = "A Requirement is placed on Website";
 $mail->MsgHTML($message);
 if($uploadOk == 1)
 $mail->addAttachment($target_file);
-$mail->AddAddress('info@reliableipc.com', 'aziz');
+$mail->AddAddress('reliable.ipc@gmail.com', 'aziz');
 if($mail->Send()) {
 	unlink($target_file);
 	mailSent = 1;
