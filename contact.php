@@ -357,61 +357,35 @@ if(isset($_POST['SubmitButton']))
 require ('php/Exception.php');
 require ('php/PHPMailer.php');
 require ('php/SMTP.php');
-require('php/textlocal.class.php');
 
-$textlocal = new Textlocal('sadiquekhan449@gmail.com', '048eeaa28ba6e2d04873d8b6ede1c7f1ae8d447790be252aa4907d340ff518bd', false);
-
-$number = array(8828462677);
-$sender = 'TXTLCL';
-
-$msg=$_POST["message"];
-$mobile = $_POST["mobile"];
-$email = $_POST["email"];
-$name = $_POST["name"];
-$messages = "Name: "."\n".$name."\n" ."Mobile: "."\n".$mobile."\n"."Email: "."\n".$email."\n"."Requirement: "."\n".$msg;
-// mail
-$message .= '<html><body>';
-$message .= '<img src="http://www.reliableipc.com/images/logo.png" alt="Website Request" />';
-$message .= '<table rules="all" style="border-color: #666;" cellpadding="10">';
-$message .= "<tr style='background: #eee;'><td><strong>Name:</strong> </td><td>" . $name . "</td></tr>";
-$message .= "<tr><td><strong>Email:</strong> </td><td>" . $email . "</td></tr>";
-$message .= "<tr><td><strong>Mobile:</strong> </td><td>" . $mobile . "</td></tr>";
-$message .= "<tr><td><strong>Requirement:</strong> </td><td>" . $msg . "</td></tr>";
-$message .= "</table>";
-$message .= "</body></html>";
-$mail = new PHPMailer(true);
-ini_set('display_errors', 1);
-//$mail->IsSMTP();
-$mail->SMTPAuth = 'tls';
-$mail->Host = "rome.viewen.com";
-$mail->Port = 465;
-$mail->Username = "info@reliableipc.com";
-$mail->Password = "Aziz@relibleipc";
-
-$mail->SetFrom('info@reliableipc.com', 'Relialeipc.com');
-$mail->Subject = "A Requirement is placed on Website";
-$mail->MsgHTML($message);
-$mail->AddAddress('info@reliableipc.com', 'Aziz');
-if($mail->Send()) {
-  echo "Message sent!";
-} else {
-  echo "Mailer Error: " . $mail->ErrorInfo;
-}
-
-try {
-    $result = $textlocal->sendSms($number, $messages, $sender);
-    print_r($result);
-} catch (Exception $e) {
-    die('Error: ' . $e->getMessage());
-}
-
-//  To redirect form on a particular page
-echo '<script language="javascript">';
-echo 'alert("Requirement recieved we will contact you shortly !")';
-echo '</script>';
-echo '<script language="javascript">';
-echo 'history.go(-2)';
-echo '</script>';
+	// Account details
+	$apiKey = urlencode('iJdkVMsQp2Q-8rHxKRrGjbYrclbTWL1PN7zBjmUDmg');
+	
+	$msg= $_POST["message"];
+	$mobile = $_POST["mobile"];
+	$email = $_POST["email"];
+	$name = $_POST["name"];
+	$messages = "Name: "."\n".$name."\n" ."Mobile: "."\n".$mobile."\n"."Email: "."\n".$email."\n"."Requirement: "."\n".$msg;
+	// Message details
+	$numbers = array(918828462677);
+	$sender = urlencode('TXTLCL');
+ 
+	$numbers = implode(',', $numbers);
+ 
+	// Prepare data for POST request
+	$data = array('apikey' => $apiKey, 'numbers' => $numbers, "sender" => $sender, "message" => $messages);
+ 
+	// Send the POST request with cURL
+	$ch = curl_init('https://api.textlocal.in/send/');
+	curl_setopt($ch, CURLOPT_POST, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$response = curl_exec($ch);
+	curl_close($ch);
+	
+	// Process your response here
+	echo $response;
+	
 }
     
 
