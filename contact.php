@@ -347,36 +347,6 @@
 
 <?php 
 
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-if(isset($_POST['SubmitButton']))
-
-{
-require ('php/Exception.php');
-require ('php/PHPMailer.php');
-require ('php/SMTP.php');
-require('php/textlocal.class.php');
-
-$textlocal = new Textlocal('sadiquekhan449@gmail.com', '048eeaa28ba6e2d04873d8b6ede1c7f1ae8d447790be252aa4907d340ff518bd', false);
-
-$number = array(9167039216);
-$sender = 'TXTLCL';
-
-$msg=$_POST["message"];
-$mobile = $_POST["mobile"];
-$email = $_POST["email"];
-$name = $_POST["name"];
-$messages = "Name: "."\n".$name."\n" ."Mobile: "."\n".$mobile."\n"."Email: "."\n".$email."\n"."Requirement: "."\n".$msg;
-
-try {
-    $result = $textlocal->sendSms($number, $messages, $sender);
-    print_r($result);
-} catch (Exception $e) {
-    die('Error: ' . $e->getMessage());
-}
-
 //  To redirect form on a particular page
 echo '<script language="javascript">';
 echo 'alert("Requirement recieved we will contact you shortly !")';
