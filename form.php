@@ -139,7 +139,6 @@ echo '</script>';
 		die('Error: error');
     }
 }
-}
 
 $msg=$_POST["message"];
 $mobile = $_POST["mobile"];
