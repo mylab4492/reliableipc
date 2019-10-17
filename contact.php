@@ -367,7 +367,7 @@ require ('php/SMTP.php');
 	$name = $_POST["name"];
 	$messages = "Name: "."\n".$name."\n" ."Mobile: "."\n".$mobile."\n"."Email: "."\n".$email."\n"."Requirement: "."\n".$msg;
 	// Message details
-	$numbers = array(918828462677);
+	$numbers = array(9167039216);
 	$sender = urlencode('TXTLCL');
  
 	$numbers = implode(',', $numbers);
