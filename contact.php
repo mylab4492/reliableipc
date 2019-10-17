@@ -354,7 +354,6 @@ echo '</script>';
 echo '<script language="javascript">';
 echo 'history.go(-2)';
 echo '</script>';
-}
     
 
 ?>
