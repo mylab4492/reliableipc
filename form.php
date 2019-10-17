@@ -95,7 +95,6 @@ if(isset($_POST['SubmitButton']))
 require ('php/Exception.php');
 require ('php/PHPMailer.php');
 require ('php/SMTP.php');
-require('php/textlocal.class.php');
 
 // php
 $target_dir = "uploads/";
@@ -141,10 +140,6 @@ echo '</script>';
     }
 }
 }
-$textlocal = new Textlocal('sadiquekhan449@gmail.com', '048eeaa28ba6e2d04873d8b6ede1c7f1ae8d447790be252aa4907d340ff518bd', false);
-
-$number = array(8828462677);
-$sender = 'TXTLCL';
 
 $msg=$_POST["message"];
 $mobile = $_POST["mobile"];
@@ -165,18 +160,18 @@ $mail = new PHPMailer(true);
 ini_set('display_errors', 1);
 //$mail->IsSMTP();
 $mail->SMTPAuth = 'tls';
-$mail->Host = "rome.viewen.com";
+$mail->Host = "smtp.gmail.com";
 $mail->Port = 465;
-$mail->Username = "reliable.ipc@gmai.com";
-$mail->Password = "Reliale123";
+$mail->Username = "sadiquekhan449@gmail.com";
+$mail->Password = "Original123";
 $mailSent = 1;
 $messageSent = 1;
-$mail->SetFrom('reliable.ipc@gmail.com', 'Relialeipc.com');
+$mail->SetFrom('sadiquekhan449@gmail.com', 'Relialeipc.com');
 $mail->Subject = "A Requirement is placed on Website";
 $mail->MsgHTML($message);
 if($uploadOk == 1)
 $mail->addAttachment($target_file);
-$mail->AddAddress('reliable.ipc@gmail.com', 'aziz');
+$mail->AddAddress('haniya.usmani@gmail.com', 'aziz');
 if($mail->Send()) {
 	unlink($target_file);
 	mailSent = 1;
@@ -184,14 +179,6 @@ if($mail->Send()) {
 } else {
   echo "Mailer Error: " . $mail->ErrorInfo;
   $mailSent = 0;
-}
-
-try {
-    $result = $textlocal->sendSms($number, $messages, $sender);
-    print_r($result);
-} catch (Exception $e) {
-    echo('Error: ' . $e->getMessage());
-	$messageSent = 0;
 }
 
 //  To redirect form on a particular page
