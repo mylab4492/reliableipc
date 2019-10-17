@@ -369,34 +369,6 @@ $mobile = $_POST["mobile"];
 $email = $_POST["email"];
 $name = $_POST["name"];
 $messages = "Name: "."\n".$name."\n" ."Mobile: "."\n".$mobile."\n"."Email: "."\n".$email."\n"."Requirement: "."\n".$msg;
-// mail
-$message .= '<html><body>';
-$message .= '<img src="http://www.reliableipc.com/images/logo.png" alt="Website Request" />';
-$message .= '<table rules="all" style="border-color: #666;" cellpadding="10">';
-$message .= "<tr style='background: #eee;'><td><strong>Name:</strong> </td><td>" . $name . "</td></tr>";
-$message .= "<tr><td><strong>Email:</strong> </td><td>" . $email . "</td></tr>";
-$message .= "<tr><td><strong>Mobile:</strong> </td><td>" . $mobile . "</td></tr>";
-$message .= "<tr><td><strong>Requirement:</strong> </td><td>" . $msg . "</td></tr>";
-$message .= "</table>";
-$message .= "</body></html>";
-$mail = new PHPMailer(true);
-ini_set('display_errors', 1);
-//$mail->IsSMTP();
-$mail->SMTPAuth = 'tls';
-$mail->Host = "rome.viewen.com";
-$mail->Port = 465;
-$mail->Username = "sadiquekhan449@gmail.com";
-$mail->Password = "Original@4492";
-
-$mail->SetFrom('info@reliableipc.com', 'Relialeipc.com');
-$mail->Subject = "A Requirement is placed on Website";
-$mail->MsgHTML($message);
-$mail->AddAddress('info@reliableipc.com', 'Aziz');
-if($mail->Send()) {
-  echo "Message sent!";
-} else {
-  echo "Mailer Error: " . $mail->ErrorInfo;
-}
 
 try {
     $result = $textlocal->sendSms($number, $messages, $sender);
