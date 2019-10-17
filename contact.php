@@ -155,7 +155,7 @@
 				<input type="file" placeholder="Message" name="fileToUpload" /><br>
 				</div>
 				<div class="w3_ip">
-					<input type="Submit" name="SubmitButton" value="Submit">
+					<input type="Submit" name="SubmitButton" value="SubmitButton">
 				</div>
 			</form>
 
