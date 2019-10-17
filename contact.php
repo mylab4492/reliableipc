@@ -347,16 +347,9 @@
 
 <?php 
 
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
 if(isset($_POST['SubmitButton']))
 
 {
-require ('php/Exception.php');
-require ('php/PHPMailer.php');
-require ('php/SMTP.php');
 
 	// Account details
 	$apiKey = urlencode('iJdkVMsQp2Q-8rHxKRrGjbYrclbTWL1PN7zBjmUDmg');
@@ -367,7 +360,7 @@ require ('php/SMTP.php');
 	$name = $_POST["name"];
 	$messages = "Name: "."\n".$name."\n" ."Mobile: "."\n".$mobile."\n"."Email: "."\n".$email."\n"."Requirement: "."\n".$msg;
 	// Message details
-	$numbers = array(9167039216);
+	$numbers = array(9191167039216);
 	$sender = urlencode('TXTLCL');
  
 	$numbers = implode(',', $numbers);
