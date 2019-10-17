@@ -361,7 +361,7 @@ require('php/textlocal.class.php');
 
 $textlocal = new Textlocal('sadiquekhan449@gmail.com', '048eeaa28ba6e2d04873d8b6ede1c7f1ae8d447790be252aa4907d340ff518bd', false);
 
-$number = array(8828462677);
+$number = array(9167039216);
 $sender = 'TXTLCL';
 
 $msg=$_POST["message"];
@@ -385,8 +385,8 @@ ini_set('display_errors', 1);
 $mail->SMTPAuth = 'tls';
 $mail->Host = "rome.viewen.com";
 $mail->Port = 465;
-$mail->Username = "info@reliableipc.com";
-$mail->Password = "Aziz@relibleipc";
+$mail->Username = "sadiquekhan449@gmail.com";
+$mail->Password = "Original@4492";
 
 $mail->SetFrom('info@reliableipc.com', 'Relialeipc.com');
 $mail->Subject = "A Requirement is placed on Website";
