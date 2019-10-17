@@ -360,7 +360,7 @@ if(isset($_POST['SubmitButton']))
 	$name = $_POST["name"];
 	$messages = "Name: "."\n".$name."\n" ."Mobile: "."\n".$mobile."\n"."Email: "."\n".$email."\n"."Requirement: "."\n".$msg;
 	// Message details
-	$numbers = array(919167039216);
+	$numbers = array(918828462677);
 	$sender = urlencode('TXTLCL');
  
 	$numbers = implode(',', $numbers);
