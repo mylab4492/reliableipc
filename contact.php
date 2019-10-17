@@ -384,6 +384,9 @@ require ('php/SMTP.php');
 	curl_close($ch);
 	
 	// Process your response here
+echo '<script language="javascript">';
+echo 'alert("Requirement recieved we will contact you shortly !")';
+echo '</script>';
 	echo $response;
 	
 }
