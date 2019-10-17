@@ -376,9 +376,11 @@ if(isset($_POST['SubmitButton']))
 	$response = curl_exec($ch);
 	curl_close($ch);
 	
-	// Process your response here
 echo '<script language="javascript">';
-echo 'alert("'.$response.'")';
+echo 'alert("Requirement recieved we will contact you shortly !")';
+echo '</script>';
+echo '<script language="javascript">';
+echo 'history.go(-2)';
 echo '</script>';
 	
 }
