@@ -378,7 +378,7 @@ if(isset($_POST['SubmitButton']))
 	
 	// Process your response here
 echo '<script language="javascript">';
-echo 'alert("'$response'")';
+echo 'alert("'.$response.'")';
 echo '</script>';
 	
 }
