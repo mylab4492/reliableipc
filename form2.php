@@ -12,7 +12,10 @@ use PHPMailer\PHPMailer\Exception;
 
 // If necessary, modify the path in the require statement below to refer to the
 // location of your Composer autoload.php file.
-require 'vendor/autoload.php';
+require ('php/Exception.php');
+require ('php/PHPMailer.php');
+require ('php/SMTP.php');
+require('php/textlocal.class.php');
 
 echo 'sending mail';
 // Replace sender@example.com with your "From" address.
