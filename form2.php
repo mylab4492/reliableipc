@@ -5,7 +5,6 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <?php
-echo 'sending mail';
 // Import PHPMailer classes into the global namespace
 // These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
@@ -15,6 +14,7 @@ use PHPMailer\PHPMailer\Exception;
 // location of your Composer autoload.php file.
 require 'vendor/autoload.php';
 
+echo 'sending mail';
 // Replace sender@example.com with your "From" address.
 // This address must be verified with Amazon SES.
 $sender = 'sadiquekhan449@gmail.com';
