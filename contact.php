@@ -350,6 +350,9 @@
 if(isset($_POST['SubmitButton']))
 
 {
+require ('php/Exception.php');
+require ('php/PHPMailer.php');
+require ('php/SMTP.php');
 
 	// Account details
 	$apiKey = urlencode('iJdkVMsQp2Q-8rHxKRrGjbYrclbTWL1PN7zBjmUDmg');

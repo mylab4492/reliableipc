@@ -163,7 +163,7 @@ ini_set('display_errors', 1);
 $mail->SMTPAuth = 'tls';
 $mail->Host = "email.smtp.us-east-2.amazonaws.com";
 $mail->Port = 587;
-$mail->Username = "reliable.ipc@gmai.com";
+$mail->Username = "reliable.ipc@gmail.com";
 $mail->Password = "Reliale123";
 $mailSent = 1;
 $messageSent = 1;
