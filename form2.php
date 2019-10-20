@@ -7,16 +7,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <?php
 // Import PHPMailer classes into the global namespace
 // These must be at the top of your script, not inside a function
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-// If necessary, modify the path in the require statement below to refer to the
-// location of your Composer autoload.php file.
-require ('php/Exception.php');
-require ('php/PHPMailer.php');
-require ('php/SMTP.php');
-require('php/textlocal.class.php');
-
 echo 'sending mail';
 // Replace sender@example.com with your "From" address.
 // This address must be verified with Amazon SES.
