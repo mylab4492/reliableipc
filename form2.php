@@ -4,20 +4,8 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<!DOCTYPE HTML>
-<html>
-
-<head>
-	<title>Enquiry Form</title>
-</head>
-	<title>Send mail Form</title>
-<body>
-
-		
-	<h1>Send mail Form</h1>
-
 <?php
-
+echo 'sending mail';
 // Import PHPMailer classes into the global namespace
 // These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
@@ -98,7 +86,3 @@ try {
 }
 
 ?>
-
-</body>
-
-</html>
