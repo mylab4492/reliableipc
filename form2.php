@@ -42,42 +42,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <body>
 
-	<!--background-->
-	<!-- Contact form -->
-	<div class="contact-main-w3-agile">
-		<div class="top-section-wthree">
-			<h2 class="sub-title">Contact Us</h2>
-			<p>We are available to answer all your questions.</p>
-		</div>
-		<div class="form-agileits-w3layouts">
-			<form action="#" id="sms_form" method="post" enctype="multipart/form-data">
-				<div class="form-w3layouts-fields">
-					<input type="text" name="name" placeholder="Name" required="" />
-				</div>
-				<div class="form-w3layouts-fields">
-					<input type="text" name="company" placeholder="Company Name" required="" />
-				</div>
-				<div class="form-w3layouts-fields">
-					<input type="email" name="email" placeholder="Email" required="" />
-				</div>
-				<div class="form-w3layouts-fields">
-					<input type="text" name="mobile" placeholder="Phone" required="" />
-				</div>
-				<div class="form-w3layouts-fields">
-					<textarea name="message" placeholder="Message" required=""></textarea>
-				</div>
-				<div class="form-w3layouts-fields">         
-				<input type="file" placeholder="Message" name="fileToUpload" />
-				</div>
-				<div class="form-w3layouts-fields">
-                  <input type="submit" name="SubmitButton"/>
-				</div>
-			</form
-		</div>
-	</div>
-		<!-- // Contact form -->
-	<div class="clear"></div>
-	<!--//background-->
+		
 </body>
 
 </html>
@@ -85,13 +50,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <?php 
 
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-if(isset($_POST['SubmitButton']))
-
-{
 require ('php/Exception.php');
 require ('php/PHPMailer.php');
 require ('php/SMTP.php');
@@ -115,7 +73,6 @@ $mail->AddAddress("sadiquekhan449@gmail@gmail.com");
  } else {
     echo "Message has been sent";
  }
-}
     
 
 ?>
