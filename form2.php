@@ -15,12 +15,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 		
 	<h1>Send mail Form</h1>
-<?php phpinfo(); ?> 
 </body>
 
-</html>
 
-<?php phpinfo(); ?> 
 <?php
 
 // Import PHPMailer classes into the global namespace
@@ -103,3 +100,5 @@ try {
 }
 
 ?>
+
+</html>
