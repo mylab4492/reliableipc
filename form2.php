@@ -356,11 +356,43 @@ error_reporting(E_ALL); ini_set('display_errors', '1');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+if(isset($_POST['SubmitButton']))
+
+
+{
 require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
-echo 'sending mail';
+echo 'sending mai
+//msg
+
+	// Account details
+	$apiKey = urlencode('iJdkVMsQp2Q-8rHxKRrGjbYrclbTWL1PN7zBjmUDmg');
+	
+	$msg= $_POST["message"];
+	$mobile = $_POST["mobile"];
+	$email = $_POST["email"];
+	$name = $_POST["name"];
+	$messages = "Name: "."\n".$name."\n" ."Mobile: "."\n".$mobile."\n"."Email: "."\n".$email."\n"."Requirement: "."\n".$msg;
+	// Message details
+	$numbers = array(9167039216);
+	$sender = urlencode('TXTLCL');
+ 
+	$numbers = implode(',', $numbers);
+ 
+	// Prepare data for POST request
+	$data = array('apikey' => $apiKey, 'numbers' => $numbers, "sender" => $sender, "message" => $messages);
+ 
+	// Send the POST request with cURL
+	$ch = curl_init('https://api.textlocal.in/send/');
+	curl_setopt($ch, CURLOPT_POST, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$response = curl_exec($ch);
+	curl_close($ch);
+	
+	// mail
 // Replace sender@example.com with your "From" address.
 // This address must be verified with Amazon SES.
 $sender = 'reliable.ipc@gmail.com';
@@ -386,19 +418,18 @@ $passwordSmtp = 'BLmh1G38i4UPlADSO24SncVB+bTtuAmWkpbWTFTHvv3v';
 $host = 'email-smtp.us-east-1.amazonaws.com';
 $port = 587;
 
+$message .= '<html><body>';
+$message .= '<img src="http://www.reliableipc.com/images/logo.png" alt="Website Request" />';
+$message .= '<table rules="all" style="border-color: #666;" cellpadding="10">';
+$message .= "<tr style='background: #eee;'><td><strong>Name:</strong> </td><td>" . $name . "</td></tr>";
+$message .= "<tr><td><strong>Email:</strong> </td><td>" . $email . "</td></tr>";
+$message .= "<tr><td><strong>Mobile:</strong> </td><td>" . $mobile . "</td></tr>";
+$message .= "<tr><td><strong>Requirement:</strong> </td><td>" . $msg . "</td></tr>";
+$message .= "</table>";
+$message .= "</body></html>";
+
 // The subject line of the email
-$subject = 'Amazon SES test (SMTP interface accessed using PHP)';
-
-// The plain-text body of the email
-$bodyText =  "Email Test\r\nThis email was sent through the
-    Amazon SES SMTP interface using the PHPMailer class.";
-
-// The HTML-formatted body of the email
-$bodyHtml = '<h1>Email Test</h1>
-    <p>This email was sent through the
-    <a href="https://aws.amazon.com/ses">Amazon SES</a> SMTP
-    interface using the <a href="https://github.com/PHPMailer/PHPMailer">
-    PHPMailer</a> class.</p>';
+$subject = "A Requirement is placed on Website";
 
 $mail = new PHPMailer(true);
 
@@ -421,14 +452,25 @@ try {
     // Specify the content of the message.
     $mail->isHTML(true);
     $mail->Subject    = $subject;
-    $mail->Body       = $bodyHtml;
-    $mail->AltBody    = $bodyText;
-    $mail->Send();
-    echo "Email sent!" , PHP_EOL;
-} catch (phpmailerException $e) {
-    echo "An error occurred. {$e->errorMessage()}", PHP_EOL; //Catch errors from PHPMailer.
-} catch (Exception $e) {
-    echo "Email not sent. {$mail->ErrorInfo}", PHP_EOL; //Catch errors from Amazon SES.
+    $mail->Body       = $message;
+if($mail->Send()) {
+	unlink($target_file);
+	mailSent = 1;
+  echo "Mail sent!";
+} else {
+  echo "Mailer Error: " . $mail->ErrorInfo;
+  $mailSent = 0;
+}
+
+//  To redirect form on a particular page
+if($mailSent == 1){
+echo '<script language="javascript">';
+echo 'alert("Requirement recieved we will contact you shortly !")';
+echo '</script>';
+echo '<script language="javascript">';
+echo 'history.go(-2)';
+echo '</script>';
+}
 }
 
 ?>
