@@ -18,8 +18,8 @@ require 'PHPMailer/src/SMTP.php';
 echo 'sending mail';
 // Replace sender@example.com with your "From" address.
 // This address must be verified with Amazon SES.
-$sender = 'www.reliableipc.com';
-$senderName = 'reliable.ipc@gmail.com';
+$sender = 'reliable.ipc@gmail.com';
+$senderName = 'reliableipc.com';
 
 // Replace recipient@example.com with a "To" address. If your account
 // is still in the sandbox, this address must be verified.
