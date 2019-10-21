@@ -363,6 +363,79 @@ require 'PHPMailer/src/SMTP.php';
 // php
 //msg
 
+	$msg= $_POST["message"];
+	$mobile = $_POST["mobile"];
+	$email = $_POST["email"];
+	$name = $_POST["name"];
+	
+	// mail
+// Replace sender@example.com with your "From" address.
+// This address must be verified with Amazon SES.
+$sender = 'reliable.ipc@gmail.com';
+$senderName = 'reliableipc.com';
+
+// Replace recipient@example.com with a "To" address. If your account
+// is still in the sandbox, this address must be verified.
+$recipient = 'sadiquekhan449@gmail.com';
+
+// Replace smtp_username with your Amazon SES SMTP user name.
+$usernameSmtp = 'AKIAS4IWVMH24KMX2BCU';
+
+// Replace smtp_password with your Amazon SES SMTP password.
+$passwordSmtp = 'BLmh1G38i4UPlADSO24SncVB+bTtuAmWkpbWTFTHvv3v';
+
+// Specify a configuration set. If you do not want to use a configuration
+// set, comment or remove the next line.
+//$configurationSet = 'ConfigSet';
+
+// If you're using Amazon SES in a region other than US West (Oregon),
+// replace email-smtp.us-west-2.amazonaws.com with the Amazon SES SMTP
+// endpoint in the appropriate region.
+$host = 'email-smtp.us-east-1.amazonaws.com';
+$port = 587;
+
+$message .= '<html><body>';
+$message .= '<img src="http://www.reliableipc.com/images/logo.png" alt="Website Request" />';
+$message .= '<table rules="all" style="border-color: #666;" cellpadding="10">';
+$message .= "<tr style='background: #eee;'><td><strong>Name:</strong> </td><td>" . $name . "</td></tr>";
+$message .= "<tr><td><strong>Email:</strong> </td><td>" . $email . "</td></tr>";
+$message .= "<tr><td><strong>Mobile:</strong> </td><td>" . $mobile . "</td></tr>";
+$message .= "<tr><td><strong>Requirement:</strong> </td><td>" . $msg . "</td></tr>";
+$message .= "</table>";
+$message .= "</body></html>";
+
+// The subject line of the email
+$subject = "A Requirement is placed on Website";
+
+$mail = new PHPMailer(true);
+
+try {
+    // Specify the SMTP settings.
+    $mail->isSMTP();
+    $mail->setFrom($sender, $senderName);
+    $mail->Username   = $usernameSmtp;
+    $mail->Password   = $passwordSmtp;
+    $mail->Host       = $host;
+    $mail->Port       = $port;
+    $mail->SMTPAuth   = true;
+    $mail->SMTPSecure = 'tls';
+   // $mail->addCustomHeader('X-SES-CONFIGURATION-SET', $configurationSet);
+
+    // Specify the message recipients.
+    $mail->addAddress($recipient);
+    // You can also add CC, BCC, and additional To recipients here.
+
+    // Specify the content of the message.
+    $mail->isHTML(true);
+    $mail->Subject    = $subject;
+    $mail->Body       = $message;
+if($mail->Send()) {
+	mailSent = 1;
+  echo "Mail sent!";
+} else {
+  echo "Mailer Error: " . $mail->ErrorInfo;
+  $mailSent = 0;
+}
 
 }
     
