@@ -84,19 +84,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 
 <?php 
-
-
 error_reporting(E_ALL); ini_set('display_errors', '1');
+// Import PHPMailer classes into the global namespace
+// These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
 if(isset($_POST['SubmitButton']))
 
-{
-require ('php/Exception.php');
-require ('php/PHPMailer.php');
-require ('php/SMTP.php');
 
+{
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
 // php
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -112,13 +111,6 @@ echo 'alert("Sorry, your file is too large.")';
 echo '</script>';
     $uploadOk = 0;
 }
-// Allow certain file formats
-//if($imageFileType != "pdf" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "doc" && $imageFileType != "docx" && $imageFileType != "ppt" && $imageFileType != "pptx"
-//&& $imageFileType != "jpg" ) {
-//    echo "Sorry, only pdf, JPEG, PNG & JPG files are allowed.";
- //   $uploadOk = 0;
-//}
-// Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
 echo '<script language="javascript">';
 echo 'history.go(-1)';
@@ -141,23 +133,34 @@ echo '</script>';
     }
 }
 }
+//msg
 
-$msg=$_POST["message"];
-$mobile = $_POST["mobile"];
-$email = $_POST["email"];
-$name = $_POST["name"];
-$messages = "Name: "."\n".$name."\n" ."Mobile: "."\n".$mobile."\n"."Email: "."\n".$email."\n"."Requirement: "."\n".$msg;
-// mail
-$message .= '<html><body>';
-$message .= '<img src="http://www.reliableipc.com/images/logo.png" alt="Website Request" />';
-$message .= '<table rules="all" style="border-color: #666;" cellpadding="10">';
-$message .= "<tr style='background: #eee;'><td><strong>Name:</strong> </td><td>" . $name . "</td></tr>";
-$message .= "<tr><td><strong>Email:</strong> </td><td>" . $email . "</td></tr>";
-$message .= "<tr><td><strong>Mobile:</strong> </td><td>" . $mobile . "</td></tr>";
-$message .= "<tr><td><strong>Requirement:</strong> </td><td>" . $msg . "</td></tr>";
-$message .= "</table>";
-$message .= "</body></html>";
-
+	// Account details
+	$apiKey = urlencode('iJdkVMsQp2Q-8rHxKRrGjbYrclbTWL1PN7zBjmUDmg');
+	
+	$msg= $_POST["message"];
+	$mobile = $_POST["mobile"];
+	$email = $_POST["email"];
+	$name = $_POST["name"];
+	$messages = "Name: "."\n".$name."\n" ."Mobile: "."\n".$mobile."\n"."Email: "."\n".$email."\n"."Requirement: "."\n".$msg;
+	// Message details
+	$numbers = array(8828462677);
+	$sender = urlencode('TXTLCL');
+ 
+	$numbers = implode(',', $numbers);
+ 
+	// Prepare data for POST request
+	$data = array('apikey' => $apiKey, 'numbers' => $numbers, "sender" => $sender, "message" => $messages);
+ 
+	// Send the POST request with cURL
+	$ch = curl_init('https://api.textlocal.in/send/');
+	curl_setopt($ch, CURLOPT_POST, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$response = curl_exec($ch);
+	curl_close($ch);
+	
+	// mail
 // Replace sender@example.com with your "From" address.
 // This address must be verified with Amazon SES.
 $sender = 'reliable.ipc@gmail.com';
@@ -165,7 +168,7 @@ $senderName = 'reliableipc.com';
 
 // Replace recipient@example.com with a "To" address. If your account
 // is still in the sandbox, this address must be verified.
-$recipient = 'sadiquekhan449@gmail.com';
+$recipient = 'reliable.ipc@gmail.com';
 
 // Replace smtp_username with your Amazon SES SMTP user name.
 $usernameSmtp = 'AKIAS4IWVMH24KMX2BCU';
@@ -182,24 +185,45 @@ $passwordSmtp = 'BLmh1G38i4UPlADSO24SncVB+bTtuAmWkpbWTFTHvv3v';
 // endpoint in the appropriate region.
 $host = 'email-smtp.us-east-1.amazonaws.com';
 $port = 587;
+
+$message .= '<html><body>';
+$message .= '<img src="http://www.reliableipc.com/images/logo.png" alt="Website Request" />';
+$message .= '<table rules="all" style="border-color: #666;" cellpadding="10">';
+$message .= "<tr style='background: #eee;'><td><strong>Name:</strong> </td><td>" . $name . "</td></tr>";
+$message .= "<tr><td><strong>Email:</strong> </td><td>" . $email . "</td></tr>";
+$message .= "<tr><td><strong>Mobile:</strong> </td><td>" . $mobile . "</td></tr>";
+$message .= "<tr><td><strong>Requirement:</strong> </td><td>" . $msg . "</td></tr>";
+$message .= "</table>";
+$message .= "</body></html>";
+
+// The subject line of the email
+$subject = "A Requirement is placed on Website";
+
 $mail = new PHPMailer(true);
-$mail->IsSMTP();
-//$mail->SMTPAuth = 'true';
-$mail->Host = $host;
-$mail->Port = $port;
-$mail->Username = $usernameSmtp;
-$mail->Password = $passwordSmtp;
-$mailSent = 1;
-$messageSent = 1;
-$mail->SetFrom($sender, $senderName);
-$mail->Subject = "A Requirement is placed on Website";
-$mail->MsgHTML($message);
-if($uploadOk == 1)
-$mail->addAttachment($target_file);
-$mail->AddAddress('sadiquekhan449@gmail.com');
+
+    // Specify the SMTP settings.
+    $mail->isSMTP();
+    $mail->setFrom($sender, $senderName);
+    $mail->Username   = $usernameSmtp;
+    $mail->Password   = $passwordSmtp;
+    $mail->Host       = $host;
+    $mail->Port       = $port;
+    $mail->SMTPAuth   = true;
+    $mail->SMTPSecure = 'tls';
+   // $mail->addCustomHeader('X-SES-CONFIGURATION-SET', $configurationSet);
+
+    // Specify the message recipients.
+    $mail->addAddress($recipient);
+    // You can also add CC, BCC, and additional To recipients here.
+
+    // Specify the content of the message.
+    $mail->isHTML(true);
+    $mail->Subject    = $subject;
+    $mail->Body       = $message;
+  $mailSent = 0;
 if($mail->Send()) {
 	unlink($target_file);
-	mailSent = 1;
+	$mailSent = 1;
   echo "Mail sent!";
 } else {
   echo "Mailer Error: " . $mail->ErrorInfo;
@@ -215,7 +239,7 @@ echo '<script language="javascript">';
 echo 'history.go(-2)';
 echo '</script>';
 }
+	
 }
-    
 
 ?>

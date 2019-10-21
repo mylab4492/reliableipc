@@ -406,7 +406,7 @@ echo '</script>';
 	$name = $_POST["name"];
 	$messages = "Name: "."\n".$name."\n" ."Mobile: "."\n".$mobile."\n"."Email: "."\n".$email."\n"."Requirement: "."\n".$msg;
 	// Message details
-	$numbers = array(9167039216);
+	$numbers = array(8828462677);
 	$sender = urlencode('TXTLCL');
  
 	$numbers = implode(',', $numbers);
@@ -430,7 +430,7 @@ $senderName = 'reliableipc.com';
 
 // Replace recipient@example.com with a "To" address. If your account
 // is still in the sandbox, this address must be verified.
-$recipient = 'sadiquekhan449@gmail.com';
+$recipient = 'reliable.ipc@gmail.com';
 
 // Replace smtp_username with your Amazon SES SMTP user name.
 $usernameSmtp = 'AKIAS4IWVMH24KMX2BCU';
