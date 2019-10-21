@@ -345,7 +345,7 @@
 
 </html>
 <?php 
-error_reporting(-1); // reports all errors
+error_reporting(1); // reports all errors
 ini_set("display_errors", "1"); // shows all errors
 ini_set("log_errors", 1);
 ini_set("error_log", "/tmp/php-error.log");
@@ -450,7 +450,6 @@ try {
     $mail->Subject    = $subject;
     $mail->Body       = $message;
 if($mail->Send()) {
-	unlink($target_file);
 	mailSent = 1;
   echo "Mail sent!";
 } else {
