@@ -93,9 +93,9 @@ use PHPMailer\PHPMailer\Exception;
 if(isset($_POST['SubmitButton']))
 
 {
-require ('php/Exception.php');
-require ('php/PHPMailer.php');
-require ('php/SMTP.php');
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
 
 // php
 $target_dir = "uploads/";
