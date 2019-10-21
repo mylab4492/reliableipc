@@ -448,7 +448,7 @@ try {
     $mail->Subject    = $subject;
     $mail->Body       = $message;
 if($mail->Send()) {
-	unlink($target_file);
+	//unlink($target_file);
 	mailSent = 1;
   echo "Mail sent!";
 } else {
