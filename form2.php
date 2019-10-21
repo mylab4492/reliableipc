@@ -18,18 +18,18 @@ require 'PHPMailer/src/SMTP.php';
 echo 'sending mail';
 // Replace sender@example.com with your "From" address.
 // This address must be verified with Amazon SES.
-$sender = 'sadiquekhan449@gmail.com';
-$senderName = 'Reliable IPC';
+$sender = 'reliable.ipc@gmail.com';
+$senderName = 'reliable.ipc@gmail.com';
 
 // Replace recipient@example.com with a "To" address. If your account
 // is still in the sandbox, this address must be verified.
 $recipient = 'sadiquekhan449@gmail.com';
 
 // Replace smtp_username with your Amazon SES SMTP user name.
-$usernameSmtp = 'AKIAS4IWVMH27XZYOY7H';
+$usernameSmtp = 'AKIAS4IWVMH24KMX2BCU';
 
 // Replace smtp_password with your Amazon SES SMTP password.
-$passwordSmtp = 'BASUFVHLjIXsQlLA9vh1+gRn0HhR8LfobAhKjo76Oll6';
+$passwordSmtp = 'BLmh1G38i4UPlADSO24SncVB+bTtuAmWkpbWTFTHvv3v';
 
 // Specify a configuration set. If you do not want to use a configuration
 // set, comment or remove the next line.
