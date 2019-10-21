@@ -379,7 +379,7 @@ if ($uploadOk == 0) {
 echo '<script language="javascript">';
 echo 'history.go(-1)';
 echo '</script>';
-		die('Error: error');
+		/////die('Error: error');
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
@@ -393,7 +393,7 @@ echo '</script>';
 echo '<script language="javascript">';
 echo 'history.go(-1)';
 echo '</script>';
-		die('Error: error');
+		//die('Error: error');
     }
 }
 }
