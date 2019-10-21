@@ -191,7 +191,7 @@ $mail->Username = $usernameSmtp;
 $mail->Password = $passwordSmtp;
 $mailSent = 1;
 $messageSent = 1;
-$mail->SetFrom(@sender, $senderName);
+$mail->SetFrom($sender, $senderName);
 $mail->Subject = "A Requirement is placed on Website";
 $mail->MsgHTML($message);
 if($uploadOk == 1)

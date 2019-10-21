@@ -346,13 +346,56 @@
 </html>
 
 <?php 
-
+error_reporting(E_ALL); ini_set('display_errors', '1');
 if(isset($_POST['SubmitButton']))
+
+// Import PHPMailer classes into the global namespace
+// These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 {
 require ('php/Exception.php');
 require ('php/PHPMailer.php');
 require ('php/SMTP.php');
+// php
+$target_dir = "uploads/";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$uploadOk = 2;
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+// Check if image file is a actual image or fake image
+// Check if file already exists
+if(!empty($_FILES["fileToUpload"]["name"])){
+// Check file size
+if ($_FILES["fileToUpload"]["size"] > 5000000) {
+echo '<script language="javascript">';
+echo 'alert("Sorry, your file is too large.")';
+echo '</script>';
+    $uploadOk = 0;
+}
+if ($uploadOk == 0) {
+echo '<script language="javascript">';
+echo 'history.go(-1)';
+echo '</script>';
+		die('Error: error');
+// if everything is ok, try to upload file
+} else {
+    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+        //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+		$uploadOk = 1;
+    } else {
+		
+		echo '<script language="javascript">';
+        echo "Sorry, there was an error uploading your file.";
+		echo '</script>';
+echo '<script language="javascript">';
+echo 'history.go(-1)';
+echo '</script>';
+		die('Error: error');
+    }
+}
+}
+//msg
 
 	// Account details
 	$apiKey = urlencode('iJdkVMsQp2Q-8rHxKRrGjbYrclbTWL1PN7zBjmUDmg');
@@ -363,7 +406,7 @@ require ('php/SMTP.php');
 	$name = $_POST["name"];
 	$messages = "Name: "."\n".$name."\n" ."Mobile: "."\n".$mobile."\n"."Email: "."\n".$email."\n"."Requirement: "."\n".$msg;
 	// Message details
-	$numbers = array(918828462677);
+	$numbers = array(9167039216);
 	$sender = urlencode('TXTLCL');
  
 	$numbers = implode(',', $numbers);
@@ -379,12 +422,85 @@ require ('php/SMTP.php');
 	$response = curl_exec($ch);
 	curl_close($ch);
 	
+	// mail
+// Replace sender@example.com with your "From" address.
+// This address must be verified with Amazon SES.
+$sender = 'reliable.ipc@gmail.com';
+$senderName = 'reliableipc.com';
+
+// Replace recipient@example.com with a "To" address. If your account
+// is still in the sandbox, this address must be verified.
+$recipient = 'sadiquekhan449@gmail.com';
+
+// Replace smtp_username with your Amazon SES SMTP user name.
+$usernameSmtp = 'AKIAS4IWVMH24KMX2BCU';
+
+// Replace smtp_password with your Amazon SES SMTP password.
+$passwordSmtp = 'BLmh1G38i4UPlADSO24SncVB+bTtuAmWkpbWTFTHvv3v';
+
+// Specify a configuration set. If you do not want to use a configuration
+// set, comment or remove the next line.
+//$configurationSet = 'ConfigSet';
+
+// If you're using Amazon SES in a region other than US West (Oregon),
+// replace email-smtp.us-west-2.amazonaws.com with the Amazon SES SMTP
+// endpoint in the appropriate region.
+$host = 'email-smtp.us-east-1.amazonaws.com';
+$port = 587;
+
+$message .= '<html><body>';
+$message .= '<img src="http://www.reliableipc.com/images/logo.png" alt="Website Request" />';
+$message .= '<table rules="all" style="border-color: #666;" cellpadding="10">';
+$message .= "<tr style='background: #eee;'><td><strong>Name:</strong> </td><td>" . $name . "</td></tr>";
+$message .= "<tr><td><strong>Email:</strong> </td><td>" . $email . "</td></tr>";
+$message .= "<tr><td><strong>Mobile:</strong> </td><td>" . $mobile . "</td></tr>";
+$message .= "<tr><td><strong>Requirement:</strong> </td><td>" . $msg . "</td></tr>";
+$message .= "</table>";
+$message .= "</body></html>";
+
+// The subject line of the email
+$subject = "A Requirement is placed on Website";
+
+$mail = new PHPMailer(true);
+
+try {
+    // Specify the SMTP settings.
+    $mail->isSMTP();
+    $mail->setFrom($sender, $senderName);
+    $mail->Username   = $usernameSmtp;
+    $mail->Password   = $passwordSmtp;
+    $mail->Host       = $host;
+    $mail->Port       = $port;
+    $mail->SMTPAuth   = true;
+    $mail->SMTPSecure = 'tls';
+   // $mail->addCustomHeader('X-SES-CONFIGURATION-SET', $configurationSet);
+
+    // Specify the message recipients.
+    $mail->addAddress($recipient);
+    // You can also add CC, BCC, and additional To recipients here.
+
+    // Specify the content of the message.
+    $mail->isHTML(true);
+    $mail->Subject    = $subject;
+    $mail->Body       = $message;
+if($mail->Send()) {
+	unlink($target_file);
+	mailSent = 1;
+  echo "Mail sent!";
+} else {
+  echo "Mailer Error: " . $mail->ErrorInfo;
+  $mailSent = 0;
+}
+
+//  To redirect form on a particular page
+if($mailSent == 1){
 echo '<script language="javascript">';
 echo 'alert("Requirement recieved we will contact you shortly !")';
 echo '</script>';
 echo '<script language="javascript">';
 echo 'history.go(-2)';
 echo '</script>';
+}
 	
 }
     
