@@ -370,23 +370,6 @@ require 'PHPMailer/src/SMTP.php';
 	$mobile = $_POST["mobile"];
 	$email = $_POST["email"];
 	$name = $_POST["name"];
-	$messages = "Name: "."\n".$name."\n" ."Mobile: "."\n".$mobile."\n"."Email: "."\n".$email."\n"."Requirement: "."\n".$msg;
-	// Message details
-	$numbers = array(9167039216);
-	$sender = urlencode('TXTLCL');
- 
-	$numbers = implode(',', $numbers);
- 
-	// Prepare data for POST request
-	$data = array('apikey' => $apiKey, 'numbers' => $numbers, "sender" => $sender, "message" => $messages);
- 
-	// Send the POST request with cURL
-	$ch = curl_init('https://api.textlocal.in/send/');
-	curl_setopt($ch, CURLOPT_POST, true);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	$response = curl_exec($ch);
-	curl_close($ch);
 	
 	// mail
 // Replace sender@example.com with your "From" address.
@@ -457,16 +440,6 @@ if($mail->Send()) {
   $mailSent = 0;
 }
 
-//  To redirect form on a particular page
-if($mailSent == 1){
-echo '<script language="javascript">';
-echo 'alert("Requirement recieved we will contact you shortly !")';
-echo '</script>';
-echo '<script language="javascript">';
-echo 'history.go(-2)';
-echo '</script>';
-}
-	
 }
     
 
