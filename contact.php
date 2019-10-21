@@ -151,9 +151,6 @@
 					</label>
 					<textarea name="message" placeholder="Your Message" rows="5" cols="20" required></textarea>
 				</div>
-				<div class="w3_ip">         
-				<input type="file" placeholder="Message" name="fileToUpload" /><br>
-				</div>
 				<div class="w3_ip">
 					<input type="Submit" name="SubmitButton" value="SubmitButton">
 				</div>
@@ -395,7 +392,6 @@ $host = 'email-smtp.us-east-1.amazonaws.com';
 $port = 587;
 
 $message .= '<html><body>';
-$message .= '<img src="http://www.reliableipc.com/images/logo.png" alt="Website Request" />';
 $message .= '<table rules="all" style="border-color: #666;" cellpadding="10">';
 $message .= "<tr style='background: #eee;'><td><strong>Name:</strong> </td><td>" . $name . "</td></tr>";
 $message .= "<tr><td><strong>Email:</strong> </td><td>" . $email . "</td></tr>";
