@@ -4,6 +4,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<!DOCTYPE HTML>
 <html>
 
 <head>
@@ -84,18 +85,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <?php 
 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
 
+error_reporting(E_ALL); ini_set('display_errors', '1');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 if(isset($_POST['SubmitButton']))
 
 {
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
+require ('php/Exception.php');
+require ('php/PHPMailer.php');
+require ('php/SMTP.php');
 
 // php
 $target_dir = "uploads/";
