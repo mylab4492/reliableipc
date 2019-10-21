@@ -86,6 +86,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <?php 
 
 
+error_reporting(E_ALL); ini_set('display_errors', '1');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -95,7 +96,6 @@ if(isset($_POST['SubmitButton']))
 require ('php/Exception.php');
 require ('php/PHPMailer.php');
 require ('php/SMTP.php');
-require('php/textlocal.class.php');
 
 // php
 $target_dir = "uploads/";
@@ -157,22 +157,46 @@ $message .= "<tr><td><strong>Mobile:</strong> </td><td>" . $mobile . "</td></tr>
 $message .= "<tr><td><strong>Requirement:</strong> </td><td>" . $msg . "</td></tr>";
 $message .= "</table>";
 $message .= "</body></html>";
+
+// Replace sender@example.com with your "From" address.
+// This address must be verified with Amazon SES.
+$sender = 'reliable.ipc@gmail.com';
+$senderName = 'reliableipc.com';
+
+// Replace recipient@example.com with a "To" address. If your account
+// is still in the sandbox, this address must be verified.
+$recipient = 'sadiquekhan449@gmail.com';
+
+// Replace smtp_username with your Amazon SES SMTP user name.
+$usernameSmtp = 'AKIAS4IWVMH24KMX2BCU';
+
+// Replace smtp_password with your Amazon SES SMTP password.
+$passwordSmtp = 'BLmh1G38i4UPlADSO24SncVB+bTtuAmWkpbWTFTHvv3v';
+
+// Specify a configuration set. If you do not want to use a configuration
+// set, comment or remove the next line.
+//$configurationSet = 'ConfigSet';
+
+// If you're using Amazon SES in a region other than US West (Oregon),
+// replace email-smtp.us-west-2.amazonaws.com with the Amazon SES SMTP
+// endpoint in the appropriate region.
+$host = 'email-smtp.us-east-1.amazonaws.com';
+$port = 587;
 $mail = new PHPMailer(true);
-ini_set('display_errors', 1);
-//$mail->IsSMTP();
-$mail->SMTPAuth = 'tls';
-$mail->Host = "email.smtp.us-east-2.amazonaws.com";
-$mail->Port = 587;
-$mail->Username = "reliable.ipc@gmail.com";
-$mail->Password = "Reliale123";
+$mail->IsSMTP();
+//$mail->SMTPAuth = 'true';
+$mail->Host = $host;
+$mail->Port = $port;
+$mail->Username = $usernameSmtp;
+$mail->Password = $passwordSmtp;
 $mailSent = 1;
 $messageSent = 1;
-$mail->SetFrom('reliable.ipc@gmail.com', 'Relialeipc.com');
+$mail->SetFrom(@sender, $senderName);
 $mail->Subject = "A Requirement is placed on Website";
 $mail->MsgHTML($message);
 if($uploadOk == 1)
 $mail->addAttachment($target_file);
-$mail->AddAddress('reliable.ipc@gmail.com', 'aziz');
+$mail->AddAddress('sadiquekhan449@gmail.com');
 if($mail->Send()) {
 	unlink($target_file);
 	mailSent = 1;
