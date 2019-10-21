@@ -430,11 +430,11 @@ try {
     $mail->Subject    = $subject;
     $mail->Body       = $message;
 if($mail->Send()) {
-	mailSent = 1;
+	//$mailSent = 1;
   echo "Mail sent!";
 } else {
   echo "Mailer Error: " . $mail->ErrorInfo;
-  $mailSent = 0;
+  //$mailSent = 0;
 }
 
 }
