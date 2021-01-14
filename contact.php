@@ -100,7 +100,7 @@
 		<h5>Reliable Industrial projects co.</h5>
 		<h5>Contact Person : Mr.Aziz</h5>
         <p><strong>Mobile :</strong> +91 - 88284 62677 / +91 - 97685 82555</p>
-        <p><strong>Email :</strong> info@reliableipc.com / reliable.ipc@gmail.com / reliable_ipc@hotmail.com</p>
+        <p><strong>Email :</strong> sales@reliableipc.com / reliable.ipc@gmail.com</p>
        <!--
 		<div class="office">
 		<h5>Register Office</h5>
@@ -190,12 +190,18 @@
 					</li>
 					<li>
 						<i class="fa fa-envelope" aria-hidden="true"></i>
-						<a href="mailto:info@example.com">info@reliableipc.com</a>
-						<span>reliable.ipc@gmail.com</span>
-						<span>reliable_ipc@hotmail.com</span>
+						<a href="mailto:sales@reliableipc.com">sales@reliableipc.com</a>
 					</li>
 					<li>
-						<i class="fa fa-phone" aria-hidden="true"></i>88 2846 2677 / 97685 82555</li>
+						<i class="fa fa-envelope" aria-hidden="true"></i>
+						<a href="mailto:reliable.ipc@gmail.com">reliable.ipc@gmail.com</a>
+					</li>
+					<li>
+						<i class="fa fa-phone" aria-hidden="true"></i>88 2846 2677
+					</li>
+					<li>
+						<i class="fa fa-phone" aria-hidden="true"></i>97685 82555
+					</li>
 				</ul>
 
 			</div>
@@ -238,7 +244,10 @@
 							<a href="about.html">About Us</a>
 						</li>
 						<li>
-							<a href="contact.html">Contact</a>
+							<a href="contact.php">Contact</a>
+						</li>
+						<li>
+							<a href="form.php">Enquiry</a>
 						</li>
 					</ul>
 				</div>
