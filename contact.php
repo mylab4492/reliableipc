@@ -29,6 +29,14 @@
 					<li><i class="fab fa-whatsapp-square fa-lg" style="color:#51cf66;"></i><a href="https://api.whatsapp.com/send?phone=918828462677" style="color:#000000"> + 91 882-846-2677</a></li>
 					<li><i class="fab fa-whatsapp-square fa-lg" style="color:#51cf66;"></i><a href="https://api.whatsapp.com/send?phone=919768582555" style="color:#000000"> + 91 976-858-2555</a></li>
 				</ul>
+				<ul>
+					<li><i class="fa fa-envelope" style="color:#000000;"></i>
+						<a href="mailto:sales@reliableipc.com" style="color:#000000">sales@reliableipc.com</a>
+					</li>
+					<li><i class="fa fa-envelope" style="color:#000000;"></i>
+						<a href="mailto:reliable.ipc@gmail.com" style="color:#000000">reliable.ipc@gmail.com</a>
+					</li>
+				</ul>
 			</div>
 		</div>
 
